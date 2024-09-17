@@ -47,7 +47,15 @@ function verTareas(){
 }
 //Funcion para marcar una tarea como completada
 function  marcarTareaCompletada(){
-    
+ 
+    let numero = parseInt(prompt("Introduce el numero de la tarea a completar: "));
+    if( numero > 0 &&  numero <= tareas.length){
+        tareas[numero-1].completada = true;
+        alert(` La tarea "${tareas[numero-1].nombre}" ha sido marcada como completada`);
+    }else{
+        alert("Numero no valido");
+    }
+
 }
 
 //Funcion para manejar el flujo del programa
