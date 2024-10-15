@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div>
+        <label for="input1">Nombre: </label>
+            <input type="text" id="input1" required  maxlength="255" placeholder="Ingresa tu nombre">
+        
+        <label for="input2"> Correo Electronico</label>
+            <input type="email" id="input2"  required maxlength="35" placeholder="Ingresar correo">
+        
+        <label for="input3"> Seleciona la institucion</label>
+            <input type="text"  id="input3" list="InstitucionLista" required >
+            <datalist id="InstitucionLista" >
+                <option value="UNAM">Fes Aragon</option>
+                <option value="IPN">Politecnico</option>
+                <option value="UPN">UPN</option>
+            </datalist>
+        
+        <label for="input4">Dependencia</label>
+            <input type="text" id="input4" required placeholder="Ingresa dependencia">
+    </div>
+    <div>
+        <button onclick="generarQR()" >Generar QR </button>
+        <button onclick=" location.href='./generadorQR.html'" >Generar nuevo QR</button>
+    </div>
+
+    <div   style="text-align: center;" id="qr-code">
+        <!-- Imagen de QR -->
+    </div>
+</body>
+</html>
