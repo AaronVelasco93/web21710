@@ -1,0 +1,16 @@
+{
+  "name": "proyectofinal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Aaron Velasco",
+  "license": "ISC",
+  "description": "Proyecto final de WEB2 uso de tecnologias de express, mysql2",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mysql2": "^3.11.3"
+  }
+}
