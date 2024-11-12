@@ -2,8 +2,6 @@ const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 
-/*Puerto*/
-const port = 3008; 
 /*instanciar*/ 
 const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
@@ -24,22 +22,23 @@ const db = mysql.createConnection({
 //conexion a la DB
 db.connect(err=>{
     if(err){
-        console.log(`Error al momento de hacer conexion BB: ${err}`);
+        console.log(`Error al momento de hacer conexion BB :3 ${err}`);
     }else{
         console.log(`Conexion realizada :3`);
     }
 });
-
+/*Puerto*/
+const port = 3036; 
+const hostName= '192.168.3.223';
 //server inicio
-app.listen(port,()=>{
-    console.log(`El server esta en escucha desde http://localhost:${port}`);
+app.listen(port,hostName,()=>{
+    console.log(`El server esta en escucha desde http://${hostNamePter}:${port}`);
 });
 
 //Mostrar lista de usuarios
-
 app.get('/',(req,res)=>{
     //Consulta  a la base de datos
-    const query = 'SELECT * FROM user';
+    const query = 'SELECT * FROM users';
     // trabajar con la conexion
     db.query(query,(err,results)=>{
         if(err){
@@ -56,8 +55,6 @@ app.get('/',(req,res)=>{
 
 
 //agregar usuario
-
-
 app.post('/add',(req,res)=>{
     const {name,email} = req.body;
     const query = 'INSERT INTO users (name, email)VALUE (?,?)';
@@ -71,4 +68,34 @@ app.post('/add',(req,res)=>{
     });
 });
 
+//editar usuario
+
+app.get('/edit/:id',(req,res)=>{
+    const {id} = req.params;
+    const query = 'SELECT * FROM users WHERE id = ?';
+    db.query(query,[id],(err,results)=>{
+        if(err){
+            console.error('Error en la DB');
+            res.send("Error en la DB ");
+        }else{
+            res.render('edit',{user:results[0]});
+
+        }
+    }); 
+});
+
+//eliminar
+
+app.get('/delete/:id',(req,res)=>{
+    const {id}=req.params;
+    const query = 'DELETE FROM users WHERE id = ?';
+    db.query(query,[id],(err)=>{
+        if(err){
+            console.error('Error en el Delete');
+            res.send("error al eliminar");
+        }else{
+            res.redirect('/');
+        }
+    });
+});
 
