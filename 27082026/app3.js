@@ -1,0 +1,12 @@
+var numero1 = 2;
+var numero2 = 3;
+var resultado = numero1 + numero2;
+console.log(resultado);
+var resultado = numero1 - numero2;
+console.log(resultado);
+var resultado = numero1 * numero2;
+console.log(resultado);
+var resultado = numero1 / numero2;
+console.log(resultado);
+var resultado = numero1 % numero2;
+console.log(resultado);
