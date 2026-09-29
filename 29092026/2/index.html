@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones</title>
+</head>
+
+<style>
+    .contenedor{
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 25px;
+        border: 1px solid red;
+        border-radius: 15px;
+    }
+    body{
+        background-color: aquamarine;
+    }
+    input, select, button{
+        display: block;
+        margin-bottom: 5px;
+        width: 100%;
+        padding: 8px;
+    }
+    button{
+        background-color: blueviolet;
+        color: blue;
+        cursor: pointer;
+    }
+    button:hover{
+        background-color: aqua;
+    }
+
+</style>
+
+<body>
+    <div class="contenedor" >
+
+
+        <h1>Operaciones</h1>
+        <form id="operacionesForm" >
+            <input type="number" id="num1" required placeholder="Numero 1">
+            <input type="number" id="num2" required placeholder="Numero 2">
+            <select id="operador">
+                <option value="sum">Sumar (+)</option>
+                <option value="rest">Restar (-)</option>
+                <option value="mult">Multiplicar (*)</option>
+                <option value="div">Dividir (/)</option>
+            </select>
+            <button type="submit">Calcular</button>
+        </form>
+        <div id="resultado"></div>
+    </div>
+</body>
+<script src="app.js"></script>
+
+</html>
