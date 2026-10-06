@@ -59,4 +59,5 @@ downloadBtn.addEventListener('click', function () {
     a.click(); // simular un click en el enlace para iniciar la descarga
     // buena practica: liberar el objeto URL creado
     URL.revokeObjectURL(url);
+    
 });

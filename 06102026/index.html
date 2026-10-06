@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Gertor de usuarios para JSON</h2>
+    <!-- Formulario para agregar usuario -->
+    <form id="formUser">
+        <input type="text" id="nombre" required placeholder="Nombre">
+        <input type="email" id="correo" required placeholder="Correo">
+        <button type="submit">Agregar Usuario</button>
+    </form>
+    <br>
+    <!-- Importar y exportar JSON -->
+    <input type="file" id="importarJSON" accept=".json">
+    <button id="descargar" >Descargar JSON</button>
+     <!-- Listar usuarios en tabla -->
+    <h3>Listar Usuarios</h3>
+    <table border="1" >
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tablaUsuarios" >
+        
+        </tbody>
+
+    </table>
+    
+    
+</body>
+<script src="app.js"></script>
+</html>
