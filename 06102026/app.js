@@ -55,7 +55,8 @@ function eliminarUsuario(index){
 
 // descargar JSON
 btnDescargar.addEventListener('click',function(){
-    const blob = new Blob([JSON.stringify(usuarios,null,2)],{type: "aplication/json"});
+    const blob = new Blob(
+    [JSON.stringify(usuarios,null,2)],{type: "aplication/json"});
     // genear URL temporal
     const url = URL.createObjectURL(blob);
 
@@ -66,5 +67,35 @@ btnDescargar.addEventListener('click',function(){
     a.click();
     // liberar la URL temporal
     URL.revokeObjectURL(url);
+
+});
+
+// evento para cargar JSON
+inputArchivo.addEventListener('change',(e)=>{
+        //obtener el archivo seleccionado
+        const archivo = e.target.files[0];// archivo seleccionado
+
+        // crar un objeto para leer archivos
+        const lector = new FileReader(); // crear lector para leer archivos
+
+        //cuando el archivo se ha cargado
+        lector.onload =(e)=>{
+            try{
+                // parsear el contenido JSON
+                const datos = JSON.parse(e.target.result);
+                // valiadar el sea una array
+                if(Array.isArray(datos)){
+                    usuarios= datos;
+                    mostrarUsuarios();
+                }else{
+                    alert("El archivo no contiene un arreglo JSON valido");
+                }
+
+            }catch(err){
+                alert("Error al leer el archivo: " + err.message);
+            }
+        };
+        //leer el archivo
+        lector.readAsText(archivo);
 
 });
