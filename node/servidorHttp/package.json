@@ -1,0 +1,17 @@
+{
+  "name": "servidorhttp",
+  "version": "1.0.0",
+  "description": "Servidor con http para estudiantes",
+  "keywords": [
+    "node",
+    "js",
+    "http"
+  ],
+  "license": "ISC",
+  "author": "AaronVelasco93",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
