@@ -1,0 +1,13 @@
+body{
+    background-color: aqua;
+}
+h1{
+    color: black;
+    text-align: center;
+    padding: 50px;
+}
+a{
+    font-size: 45px;
+    text-align: center;
+    padding: 30px;
+}
