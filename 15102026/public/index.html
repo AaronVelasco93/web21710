@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Usuario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Formulario</h2>
+    <form id="formulario" >
+        <input type="text" id="nombre" placeholder="Nombre" required >
+        <input type="email" id="correo" placeholder="Correo" required>
+        <button type="submit">Agregar</button>
+    </form>
+    <h3>Usuarios registrados</h3>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+        </thead>
+        <tbody id="tabla">
+           
+        </tbody>
+    </table>
+</body>
+<script src="script.js"></script>
+</html>
