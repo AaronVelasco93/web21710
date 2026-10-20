@@ -55,6 +55,24 @@ form.addEventListener('submit',async e =>{
         editando= false;
         usuarioId=null;
         document.querySelector('button[type="submit"]').textContent='Agregar';
-    }
+    }else{
+        // agregar nuevo usario
+        await fetch('/api/usuarios',{
+            method: 'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify(datos)
 
+        });
+    }
+    form.reset();
+    cargarUsuarios();
 });
+
+// eliminar ususario
+async function eliminar(id){
+    if(confirm('¿Desea Eliminar el usuario?')){
+        await fetch('/api/usuarios/'+id,{method:'DELETE'});
+        cargarUsuarios();
+    }    
+}
+cargarUsuarios();
