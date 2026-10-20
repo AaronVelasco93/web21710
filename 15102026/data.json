@@ -1,1 +1,7 @@
-[]
+[
+  {
+    "nombre": "Datos test",
+    "correo": "aaron@gmail.com",
+    "id": 2
+  }
+]

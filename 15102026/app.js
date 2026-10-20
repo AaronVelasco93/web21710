@@ -22,7 +22,7 @@ app.get('/api/usuarios',(req,res)=>{
 app.post('/api/usuarios',(req,res)=>{
     const data = JSON.parse(fs.readFileSync(DATA_FILE)); //Leer y convertir en forma asincrona
     const nuevo = req.body; // obtener los datos del cliente de la funcion de form.addEventListener('submit',.. -> agregar usuario
-    nuevo.id=data.length > 0 ? data[data.length-1]+1 : 1 ; // generar el ID de autoincremento
+    nuevo.id=Math.max(0, ...data.map(u => u.id)) + 1 ; // generar el ID de autoincremento
     data.push(nuevo); // agregar nuevo usuario
     fs.writeFileSync(DATA_FILE, JSON.stringify(data,null,2));
     res.json({mensaje: 'Usuario agregado'});
@@ -32,8 +32,8 @@ app.put('/api/usuarios/:id',(req,res)=>{
     const data = JSON.parse(fs.readFileSync(DATA_FILE));
     const id = parseInt(req.params.id);
     const index = data.findIndex(u => u.id === id);
-    if(index !== 1){
-        data[index] ={...data[index], ...req.body};
+    if(index !== -1){
+        data[index] ={...data[index], ...req.body, id};
         fs.writeFileSync(DATA_FILE, JSON.stringify(data,null,2));
         res.json({mensaje:'Usuario actualizado'});
 
@@ -46,8 +46,14 @@ app.put('/api/usuarios/:id',(req,res)=>{
 app.delete('/api/usuarios/:id',(req,res)=>{
     let data = JSON.parse(fs.readFileSync(DATA_FILE));
     const id = parseInt(req.params.id);
-    data = data.fiter(u => u.id !== id);
+    if (!data.some(u => u.id === id)) {
+        return res.status(404).json({error: 'Usuario no encontrado'});
+    }
+    data = data.filter(u => u.id !== id);
     fs.writeFileSync(DATA_FILE,JSON.stringify(data,null,2));
     res.json({mensaje:'Usuario eleminado'});
 });
-
+const port = 3000;
+app.listen(port,()=>{
+ console.log(`http://localhost:${port}`);   
+});
