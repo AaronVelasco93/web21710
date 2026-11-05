@@ -1,0 +1,19 @@
+{
+  "name": "crud-mysql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^18.0.9", // Permite cargar variables de entorno desde un archivo .env
+    "ejs": "^7.0.2",    //Motor de plantillas para generar HTML dinámico en aplicaciones web
+    "express": "^5.3.0", //Framework web para Node.js que facilita la creación de aplicaciones web y APIs
+    "mysql2": "^3.24.6" //Cliente de base de datos MySQL para Node.js que permite interactuar con bases de datos MySQL
+  }
+}
