@@ -1,36 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios JSON</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
-    <form id="formulario">
-        <input type="hidden" type="text" id="userId">
-        <div>
-            <label for="">Nombre</label>
-            <input type="text" id="nombre" required >
-            <br>
-            <label for="">Correo</label>
-            <input type="email" id="correo" required>
-        </div>
-        <button type="submit" id="btnGuardar" >Agregar</button>
+<html lang="es">
 
-    </form>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="tabla"></tbody>
-    </table>
+
+<head>
+  <meta charset="UTF-8" /> <!-- Define la codificación de caracteres como UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Ajuste responsivo para móviles -->
+  <title>Usuarios JSON</title> <!-- Título de la pestaña del navegador -->
+  <!-- Carga el framework Materialize desde CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css"> <!-- Archivo local de estilos personalizados -->
+</head>
+
+
+<body class="container"> <!-- Clase 'container' de Materialize centra el contenido -->
+  <h4 class="center-align">Gestión de Usuarios</h4> <!-- Título centrado -->
+
+
+  <!-- Formulario para agregar o editar usuarios -->
+  <form id="formulario" class="col s12"> <!-- ID usado por JS, clase para diseño de columna Materialize -->
+    <input type="hidden" id="userId"> <!-- Campo oculto para guardar ID del usuario al editar -->
+    <div class="row"> <!-- Fila para organizar los campos -->
+      <div class="input-field col s6"> <!-- Campo de nombre, ocupa 6 columnas -->
+        <input id="nombre" type="text" required /> <!-- Campo de texto obligatorio -->
+        <label for="nombre">Nombre</label>
+      </div>
+      <div class="input-field col s6"> <!-- Campo de correo, ocupa 6 columnas -->
+        <input id="correo" type="email" required /> <!-- Campo de correo obligatorio -->
+        <label for="correo">Correo</label>
+      </div>
+    </div>
+    <!-- Botón de acción que cambia entre "Agregar" y "Actualizar" -->
+    <button class="btn waves-effect waves-light" id="btnGuardar" type="submit">Agregar</button>
+  </form>
+
+
+  <!-- Tabla donde se mostrarán los usuarios -->
+  <table class="striped highlight"> <!-- striped: alterna color de filas, highlight: resalta al pasar -->
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Acciones</th> <!-- Editar / Eliminar -->
+      </tr>
+    </thead>
+    <tbody id="tabla"></tbody> <!-- Aquí se insertan dinámicamente las filas con JavaScript -->
+  </table>
+
+
+  <!-- Carga el JS de Materialize (para etiquetas flotantes, validaciones, etc) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="script.js"></script> <!-- Archivo JS con lógica del CRUD -->
 </body>
-<script src="script.js"></script>
+
+
 </html>
