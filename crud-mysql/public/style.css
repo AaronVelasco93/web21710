@@ -1,0 +1,10 @@
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 48px;
+    background-color: antiquewhite;
+}
+table,th,td{
+    border: 1px solid red;
+    padding: 0px;
+    border-collapse: collapse;
+}
