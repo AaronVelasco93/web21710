@@ -29,7 +29,7 @@ form.addEventListener('submit', async e => {
     usuarioId = null;
     document.getElementById('btnGuardar').textContent = 'Agregar';
   } else {
-    // 🟢 Si no estamos editando: agregar nuevo usuario (POST)
+    //  Si no estamos editando: agregar nuevo usuario (POST)
     await fetch('/api/usuarios', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -42,7 +42,7 @@ form.addEventListener('submit', async e => {
   cargar();               // Recarga la tabla
 });
 
-// 🧾 Función para cargar los usuarios desde el servidor y mostrarlos en la tabla
+//  Función para cargar los usuarios desde el servidor y mostrarlos en la tabla
 async function cargar() {
   const res = await fetch('/api/usuarios');
   const datos = await res.json();
@@ -62,7 +62,7 @@ async function cargar() {
   });
 }
 
-// ✏️ Llena el formulario con los datos del usuario seleccionado para editar
+//  Llena el formulario con los datos del usuario seleccionado para editar
 function llenarFormulario(id, nombreValor, correoValor) {
   nombre.value = nombreValor;
   correo.value = correoValor;
@@ -72,7 +72,7 @@ function llenarFormulario(id, nombreValor, correoValor) {
   M.updateTextFields(); // Refresca las etiquetas flotantes en los inputs
 }
 
-// ❌ Elimina un usuario después de confirmar
+//  Elimina un usuario después de confirmar
 async function eliminar(id) {
   if (confirm('¿Eliminar usuario?')) {
     await fetch(`/api/usuarios/${id}`, { method: 'DELETE' });
@@ -80,5 +80,5 @@ async function eliminar(id) {
   }
 }
 
-// 🔄 Llamada inicial para mostrar los usuarios al cargar la página
+// Llamada inicial para mostrar los usuarios al cargar la página
 cargar();
