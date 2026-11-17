@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+</head>
+<body>
+    <h2>Editar Usuario</h2>
+    <form id="editUserForm" action="/update/<%= user.id %>" method="post">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="nombre" value="<%= user.nombre %>" required><br><br>
+
+        <label for="email">Correo Electr&oacute;nico:</label>
+        <input type="email" id="email" name="correo" value="<%= user.correo %>" required><br><br>
+
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <script>
+    const form = document.getElementById('editUserForm');
+    const nombre = document.getElementById('name');
+    const correo = document.getElementById('email');
+
+    // Cambio: enviar la edicion con fetch para mostrar alertas sin perder los datos capturados.
+    form.addEventListener('submit', async e => {
+        e.preventDefault();
+
+        try {
+            const res = await fetch(form.action, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nombre: nombre.value,
+                    correo: correo.value
+                })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                alert(data.error);
+                correo.focus();
+                correo.select();
+                return;
+            }
+
+            alert(data.mensaje);
+            window.location.href = '/';
+        } catch (error) {
+            alert('No se pudo procesar la solicitud. Intente nuevamente.');
+        }
+    });
+    </script>
+</body>
+</html>

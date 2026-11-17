@@ -1,26 +1,39 @@
-require('dotenv').config(); // Cargar variables de entorno desde el archivo .env
-const express = require('express'); // Importar el framework Express
-const path = require('path'); // Importar el módulo path para manejar rutas de archivos
-const app = express(); // Crear una instancia de la aplicación Express
+require('dotenv').config();
+//  Carga las variables de entorno desde el archivo .env (como PORT o credenciales de base de datos)
 
-const userRoutes = require('./routes/users'); // Importar las rutas de usuario desde el archivo userRoutes.js
+const express = require('express');
+//  Importa Express, el framework para crear servidores web con Node.js
 
-app.set('view engine', 'ejs'); // Configurar EJS como el motor de plantillas
+const path = require('path');
+//  Importa el módulo 'path' de Node.js para trabajar con rutas de archivos de forma segura
 
-app.set('views', path.join(__dirname, 'views')); // Configurar la carpeta de vistas
+const app = express();
+//  Crea una instancia de aplicación de Express
 
-app.use(express.urlencoded({ extended: false })); // Middleware para analizar datos de formularios que se mandan por metodo post
+const userRoutes = require('./routes/users');
+//  Importa el archivo de rutas donde se manejan las operaciones CRUD para usuarios
 
-app.use(express.static(path.join(__dirname, 'public'))); // Configurar la carpeta de archivos estáticos
+//  Configura el motor de plantillas EJS
+app.set('view engine', 'ejs'); 
+// Le dice a Express que renderice archivos .ejs como vistas
 
-app.use('/',userRoutes); // Usar las rutas de usuario para todas las solicitudes a la raíz
+app.set('views', path.join(__dirname, 'views')); 
+// Define la carpeta donde están guardadas las vistas .ejs
 
-const PORT = process.env.PORT || 3010; // Obtener el puerto desde las variables de entorno o usar 3000 por defecto
-app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto http://localhost:${PORT}`); // Iniciar el servidor y mostrar un mensaje en la consola
-});
+app.use(express.urlencoded({ extended: false }));
+//  Middleware que permite leer los datos enviados desde formularios HTML (formulario POST)
 
+//  Hacer pública la carpeta 'public' para servir archivos estáticos (CSS, imágenes, JS del frontend)
+app.use(express.static(path.join(__dirname, 'public')));
+ 
+// Cambio: permitir solicitudes JSON enviadas por fetch desde los formularios.
+app.use(express.json());
 
+//  Middleware de rutas: todas las rutas definidas en 'routes/users.js' estarán disponibles desde "/"
+app.use('/', userRoutes);
 
+//  Define el puerto desde variables de entorno, o por defecto el 3000
+const PORT = process.env.PORT || 3000;
 
-
+//  Inicia el servidor y lo pone en escucha
+app.listen(PORT, () => console.log(` Servidor en http://localhost:${PORT}`));
