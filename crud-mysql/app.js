@@ -1,39 +1,40 @@
+// cargar variables de entorno
 require('dotenv').config();
-//  Carga las variables de entorno desde el archivo .env (como PORT o credenciales de base de datos)
 
+// importar express
 const express = require('express');
-//  Importa Express, el framework para crear servidores web con Node.js
 
+// importar modulo para el uso de rutas
 const path = require('path');
-//  Importa el módulo 'path' de Node.js para trabajar con rutas de archivos de forma segura
 
+//crear la instancia de express
 const app = express();
-//  Crea una instancia de aplicación de Express
 
+// Importar el archivo de rutas donde se maneja la logica del CRUD
 const userRoutes = require('./routes/users');
-//  Importa el archivo de rutas donde se manejan las operaciones CRUD para usuarios
 
-//  Configura el motor de plantillas EJS
-app.set('view engine', 'ejs'); 
-// Le dice a Express que renderice archivos .ejs como vistas
+//configurar el motor de plantillas EJS
+app.set('view engine', 'ejs');
 
-app.set('views', path.join(__dirname, 'views')); 
-// Define la carpeta donde están guardadas las vistas .ejs
+//definir la carpeta donde guardaremos las vistas
+app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.urlencoded({ extended: false }));
-//  Middleware que permite leer los datos enviados desde formularios HTML (formulario POST)
-
-//  Hacer pública la carpeta 'public' para servir archivos estáticos (CSS, imágenes, JS del frontend)
+//poner de forma publica la carpeta de public para css, js, imagenes, etc
 app.use(express.static(path.join(__dirname, 'public')));
- 
-// Cambio: permitir solicitudes JSON enviadas por fetch desde los formularios.
-app.use(express.json());
 
-//  Middleware de rutas: todas las rutas definidas en 'routes/users.js' estarán disponibles desde "/"
+//middleware para parsear el cuerpo de las solicitudes
+app.use(express.urlencoded({ extended: false }));
+
+ // Cambio: permitir solicitudes JSON enviadas por fetch desde los formularios.
+app.use(express.json());
+// usar las rutas definidas en el archivo de rutas
 app.use('/', userRoutes);
 
-//  Define el puerto desde variables de entorno, o por defecto el 3000
-const PORT = process.env.PORT || 3000;
+//puerto de escucha
+const PORT = process.env.PORT || 3006;
 
-//  Inicia el servidor y lo pone en escucha
-app.listen(PORT, () => console.log(` Servidor en http://localhost:${PORT}`));
+//iniciar el servidor   
+app.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto http://localhost:${PORT}`);
+});
+
